@@ -1,0 +1,19 @@
+class Value:
+
+    def __init__(self, val = 0):
+        self.val = val
+
+    def __set__(self, instance, value):
+        self.val = value - instance.commission * value
+        return self.val
+
+    def __get__(self, instance, owner):
+        return self.val
+
+
+class Account:
+
+    amount = Value()
+
+    def __init__(self, commission):
+        self.commission = commission
